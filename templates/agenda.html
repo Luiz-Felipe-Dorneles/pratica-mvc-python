@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filnename='style.css') }}">
+    <title>Agenda</title>
+</head>
+<body>
+    <h1 id="lt">Lista de Tarefas</h1>
+    <div id="agenda">
+        <input id="tarefa" type="text" placeholder="Digite sua tarefa">
+        <input type="date" id="data">
+        <div class="botao-container">
+            <button id="botao" onclick="adicionarTarefa()">Adicionar Tarefa</button>
+            <button id="limpar" onclick="limparTarefas()">Limpar Tarefas</button>
+        </div>
+    </div>
+    <p id="exibir"></p>
+    <div id="lista-de-tarefas"></div>
+
+    <script>
+        let afazeres = JSON.parse(localStorage.getItem("afazeres")) || [];
+
+        function salvarTarefas() {
+            localStorage.setItem("afazeres", JSON.stringify(afazeres));
+        }
+
+        function adicionarTarefa() {
+            const caixaDeTexto = document.getElementById("tarefa");
+            const tarefa = caixaDeTexto.value.trim();
+            const caixaDeData = document.getElementById("data");
+            const data = caixaDeData.value;
+
+            if (tarefa && data) {
+                afazeres.push({
+                    nome: tarefa,
+                    id: Date.now().toString(),
+                    data: data
+                });
+
+                salvarTarefas();
+                renderizar();
+                caixaDeTexto.value = '';
+                caixaDeData.value = '';
+            } else {
+                alert("Por favor, insira uma tarefa e uma data válida.");
+            }
+        }
+
+        function renderizar() {
+            const listaDeTarefas = document.getElementById("lista-de-tarefas");
+            listaDeTarefas.innerHTML = "";
+
+            afazeres.forEach(function (tarefa) {
+                const botao = document.createElement("button");
+                botao.innerText = "Apagar";
+                botao.style = "margin-left: 12px";
+                botao.id = tarefa.id;
+                botao.classList.add("botao-de-tarefas");
+                botao.onclick = removerTarefas;
+
+                const elemento = document.createElement("div");
+                elemento.id = "rt";
+                
+                elemento.innerHTML = tarefa.nome + " - " + formatarData(tarefa.data);
+
+                elemento.appendChild(botao);
+                listaDeTarefas.appendChild(elemento);
+            });
+        }
+
+        function removerTarefas(evento) {
+            const botao = evento.target;
+            const id = botao.id;
+
+            afazeres = afazeres.filter(function (tarefa) {
+                return tarefa.id !== id;
+            });
+
+            salvarTarefas();
+            renderizar();
+        }
+
+        function formatarData(data) {
+            if (!data) return "";
+
+            const partes = data.split("-");
+            if (partes.length !== 3) return data;
+
+            return `${partes[2]}/${partes[1]}/${partes[0]}`;
+        }
+
+        function limparTarefas() {
+            afazeres = []; // Limpa todas as tarefas
+            salvarTarefas(); // Atualiza o localStorage
+            renderizar(); // Atualiza a interface
+        }
+
+        renderizar();
+    </script>
+</body>
+</html>
