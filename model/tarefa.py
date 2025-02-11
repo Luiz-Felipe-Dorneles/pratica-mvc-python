@@ -1,7 +1,8 @@
-from model.database import Database
+from database import Database
 
 class Tarefa:
-    def __init__(self, titulo, data_conclusao):
+    def __init__(self, id, titulo, data_conclusao):
+        self.id = id
         self.titulo = titulo
         self.data_conclusao = data_conclusao
 
@@ -24,4 +25,18 @@ class Tarefa:
         tarefas = db.consultar(sql)
         db.desconectar()
         return tarefas if tarefas else []
+    
+    def apagarTarefa(self):
+        """Apaga uma tarefa cadastrada no banco de dados"""
+        db = Database()
+        db.conectar()
+
+        sql = 'DELETE FROM tarefa WHERE id = %s'
+        params = (self.id,)
+        db.executar(sql, params)
+        db.desconectar()
+
+tarefa = Tarefa(2, 'Teste de tarefa', None)
+tarefa.apagarTarefa()
+
 
