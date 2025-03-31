@@ -1,4 +1,4 @@
-from database import Database
+from model.database import Database
 
 class Tarefa:
     def __init__(self, id, titulo, data_conclusao):
