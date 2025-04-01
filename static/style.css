@@ -51,10 +51,12 @@ button {
     color: #fff;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #7e2a7e;
+    transform: scale(1.05); /* Leve aumento no botão */
 }
 
 ul {
@@ -75,12 +77,25 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+li:hover {
+    background-color: #9b4d96;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+li:hover a {
+    color: #000;
+    transform: scale(1.1);
 }
 
 a {
     color: #9b4d96;
     text-decoration: none;
     margin-left: 10px;
+    transition: color 0.3s ease;
 }
 
 a:hover {
@@ -94,8 +109,10 @@ a:hover {
     border-radius: 10px;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .botao-de-tarefas:hover {
     background-color: #7e2a7e;
+    transform: scale(1.05); /* Leve aumento no botão de tarefas */
 }
