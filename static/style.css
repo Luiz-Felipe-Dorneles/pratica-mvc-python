@@ -8,7 +8,6 @@ body {
     background-color: #121212;
     color: #f1f1f1;
     font-family: 'Arial', sans-serif;
-    transition: background-color 0.3s ease;
 }
 
 h1 {
@@ -16,7 +15,6 @@ h1 {
     margin-top: 50px;
     color: #9b4d96;
     font-size: 36px;
-    animation: fadeIn 1s ease-in;
 }
 
 form {
@@ -28,8 +26,6 @@ form {
     padding: 20px;
     border-radius: 15px;
     margin-top: 20px;
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in forwards;
 }
 
 input {
@@ -39,13 +35,11 @@ input {
     border: 1px solid #9b4d96;
     background-color: #333;
     color: #f1f1f1;
-    transition: all 0.3s ease;
 }
 
 input:focus {
     outline: none;
     border-color: #9b4d96;
-    box-shadow: 0 0 10px rgba(155, 77, 150, 0.5);
 }
 
 button {
@@ -57,12 +51,10 @@ button {
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #7e2a7e;
-    transform: translateY(-3px);
 }
 
 ul {
@@ -72,8 +64,6 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0;
-    animation: fadeIn 2s ease-in forwards;
 }
 
 li {
@@ -85,19 +75,12 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
-li:hover {
-    transform: scale(1.05);
-    background-color: #444;
 }
 
 a {
     color: #9b4d96;
     text-decoration: none;
     margin-left: 10px;
-    transition: color 0.3s ease;
 }
 
 a:hover {
@@ -111,19 +94,9 @@ a:hover {
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .botao-de-tarefas:hover {
     background-color: #7e2a7e;
-    transform: translateY(-3px);
 }
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+```
