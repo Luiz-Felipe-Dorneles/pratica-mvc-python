@@ -1,0 +1,15 @@
+{% extends "agenda.html" %}
+
+{% block content %}
+    <h2>Editar Tarefa</h2>
+    <form method="POST">
+        <label for="titulo">Título</label>
+        <input type="text" name="titulo" value="{{ tarefa.titulo }}" required>
+        
+        <label for="data_conclusao">Data de Conclusão</label>
+        <input type="date" name="data_conclusao" value="{{ tarefa.data_conclusao }}">
+        
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{{ url_for('index') }}">Voltar</a>
+{% endblock %}
